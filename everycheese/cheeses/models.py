@@ -1,5 +1,5 @@
 from django.db import models
-
+from django_countries.fields import CountryField
 from autoslug import AutoSlugField
 
 from model_utils.models import TimeStampedModel
@@ -14,6 +14,9 @@ class Cheese(TimeStampedModel):
         populate_from="name"
     )
     description = models.TextField("Description", blank=True)
+    country_of_origin = CountryField(
+        "Country of Origin", blank=True
+    )
 
     class Firmness(models.TextChoices):
         UNSPECIFIED = "unspecified", "Unspecified"
